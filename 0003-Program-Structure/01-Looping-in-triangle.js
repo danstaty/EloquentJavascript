@@ -3,3 +3,9 @@
  */
 
 
+var result="";
+while(result.length < 7){
+    result = result + "#";
+    console.log(result);
+};
+
