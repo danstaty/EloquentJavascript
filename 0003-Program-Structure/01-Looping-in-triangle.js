@@ -9,3 +9,8 @@ while(result.length < 7){
     console.log(result);
 };
 
+
+
+for(var line = "#"; line.length < 7; line += "#"){
+    console.log(line);
+};
