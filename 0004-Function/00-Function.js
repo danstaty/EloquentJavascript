@@ -53,5 +53,33 @@ function findSolution(target){
 console.log(findSolution(24));
 
 
+//Пример с фермой и животными
+// Мое решение
+function findSolution(quont, kind){
+	var str = quont.toString();
+  if(str.length == 3)
+      return quont + kind;
+  	else if(str.length == 2)
+      return "0" + quont + kind;
+  	else 
+      return "00" + quont + kind;
+}
+console.log(findSolution(99, "cow"));
+
+// Решение из книги
+function zeroPad(number, width){
+    var string = String(number);
+    while(string.length < width)
+    string = "0" + string;
+    return string;
+}
+
+function printFarmInventory(cow, chiken, pig){
+    console.log(zeroPad(cow, 3) + " Коров")
+    console.log(zeroPad(chiken, 3) + " Куриц")
+    console.log(zeroPad(pig, 3) + " Свиней")
+}
+printFarmInventory(7, 16, 3);
+
 
 
