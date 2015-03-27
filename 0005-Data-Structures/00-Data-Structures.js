@@ -40,15 +40,52 @@ console.log(phi([76, 9, 4, 1]));
 
     function tableFor(event, journal) {
         var table = [0, 0, 0, 0];
-        for(i=0; i < journal.length; i++){
-          var entry = journal[i], index = 0;
-            if(hasEvent(event, entry)) index += 1;
-            if(event.squirrel) index += 2;
+        for(i=0, i < journal.lenght, i++)[
+            var entry = journal[i], index = 0;
+            if(hasEvent(event,entry)) index += 1;
+            if(entry.squirrel) index += 2;
             table[index] += 1;
-        };
-            return table;
+        ];
+        return table;
     };
 
 
 console.log(tableFor("pizza", JOURNAL));
 // → [76, 9, 4, 1]
+
+// Final analysis
+function gatherCorrelations(journal) {
+        var phis = {};
+        for(var entry = 0; entry < journal.length; entry++){
+            var events = journal[entry].events;
+            for(i=0; i < events.length; i++){
+                var event = events[i];
+                if(!(event in phis))
+                phis[event] = phi(tableFor(event,journal));
+            };
+        };
+        return phis;
+};
+
+var correlations = gatherCorrelations(JOURNAL);
+console.log(correlations.pizza);
+// → 0.068599434
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
