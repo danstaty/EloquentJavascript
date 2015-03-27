@@ -25,6 +25,7 @@ function phi(table){
         (table[0] + table[1]) *
         (table[1] + table[3]) *
         (table[0] + table[2]));
+};
 
 console.log(phi([76, 9, 4, 1]));
 // → 0.068599434
@@ -32,15 +33,22 @@ console.log(phi([76, 9, 4, 1]));
 
 //Находим корреляцию для конкертного события
 
-    function hasEvent(){
-
-
+    function hasEvent(event, entry){
+        return entry.events.indexOf(event) != -1;
     };
 
-    function tableFor(events, array){
 
+    function tableFor(event, journal) {
+        var table = [0, 0, 0, 0];
+        for(i=0; i < journal.length; i++){
+          var entry = journal[i], index = 0;
+            if(hasEvent(event, entry)) index += 1;
+            if(event.squirrel) index += 2;
+            table[index] += 1;
+        };
+            return table;
     };
-};
+
 
 console.log(tableFor("pizza", JOURNAL));
 // → [76, 9, 4, 1]
