@@ -40,12 +40,12 @@ console.log(phi([76, 9, 4, 1]));
 
     function tableFor(event, journal) {
         var table = [0, 0, 0, 0];
-        for(i=0, i < journal.lenght, i++)[
-            var entry = journal[i], index = 0;
+        for(var i = 0; i < journal.length; i++){
+            var entry = table[i], index = 0;
             if(hasEvent(event,entry)) index += 1;
-            if(entry.squirrel) index += 2;
+            if(journal.squirrel) index += 2;
             table[index] += 1;
-        ];
+        };
         return table;
     };
 
