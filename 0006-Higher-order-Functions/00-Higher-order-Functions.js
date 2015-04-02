@@ -120,9 +120,19 @@ console.log(ancestry.length);
 // → 39
 
 
+//Try to understand methods .call() and apply() - callbacks
+function forCall(array, meFunction){
+    for(var i = 0; i < array.length; i++)
+        meFunction.call(this, array[i]);
+};
 
+forCall([1, 2, 3], function(data){
+    console.log("Hello from a callback. Processing the value " + data);
+});
 
-
+/*Hello from a callback. Processing the value 1
+Hello from a callback. Processing the value 2
+Hello from a callback. Processing the value 3*/
 
 
 
