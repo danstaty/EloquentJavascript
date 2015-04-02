@@ -187,15 +187,28 @@ console.log(overNinety.map(function(person){
 }));
 
 
+//Used hand-made reduce
 
+function reduce(array, combine, start) {
+    var current = start;
+    for(var i = 0; i < array.length; i++){
+        current = combine(current, array[i])
+    };
+    return current;
+}
 
+console.log(reduce([1, 2, 3, 4], function(a, b){
+    return a + b;
+}, 0))
 
+//Using method .reduce()
 
+console.log(ancestry.reduce(function(min, cur){
+    if(min.born < cur.born) return min
+    else return cur;
+}))
 
-
-
-
-
+// → {name: "Pauwels van Haverbeke", born: 1535, …}
 
 
 
