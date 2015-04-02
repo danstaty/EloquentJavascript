@@ -157,26 +157,34 @@ console.log(ancestry.filter(function(person){
 }));
 
 
-//Using map
-function map(array, transform) {
+//Using hand-made map
+function map(array, transform){
     var mapped = [];
-    for (var i = 0; i < array.length; i++)
-        mapped.push(transform(array[i]));
+    for(var i = 0; i < array.length; i++){
+        mapped.push(transform(array[i]))
+    };
     return mapped;
-}
+};
 
-var overNinety = ancestry.filter(function(person) {
+var overNinety = ancestry.filter(function(person){
     return person.died - person.born > 90;
-});
-console.log(map(overNinety, function(person) {
+})
+
+console.log(map(overNinety, function(person){
     return person.name;
-}));
+}))
+
 // → ["Clara Aernoudts", "Emile Haverbeke",
 //    "Maria Haverbeke"]
 
+//Using method .map()
 
-
-
+var overNinety = ancestry.filter(function(person) {
+    return person.died - person.born > 90;
+})
+console.log(overNinety.map(function(person){
+    return person.name;
+}));
 
 
 
