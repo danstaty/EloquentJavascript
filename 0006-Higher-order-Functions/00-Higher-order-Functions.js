@@ -227,8 +227,14 @@ console.log(average(ancestry.filter(female).map(age)));
 // → 54.56
 
 
+//Continued work on ancestry.js. Find step of DNK
+var byName = {};
+ancestry.forEach(function(person){
+    byName[person.name] = person;
+});
 
-
+console.log(byName["Philibert Haverbeke"]);
+// → {name: "Philibert Haverbeke", …}
 
 
 
