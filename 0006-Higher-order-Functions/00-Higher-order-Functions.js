@@ -135,7 +135,44 @@ Hello from a callback. Processing the value 2
 Hello from a callback. Processing the value 3*/
 
 
+//Filter Array
+function filter(array, test) {
+    var passed = [];
+    for(var i = 0; i < array.length; i++){
+        if(test(array[i]))
+        passed.push(array[i])
+    };
+    return passed;
+};
 
+console.log(filter(ancestry, function(person) {
+    return person.born > 1900 && person.born < 1925;
+}));
+// → [{name: "Philibert Haverbeke", …}, …]
+
+
+//Standart Method .filter()
+console.log(ancestry.filter(function(person){
+   return person.father == "Carel Haverbeke";
+}));
+
+
+//Using map
+function map(array, transform) {
+    var mapped = [];
+    for (var i = 0; i < array.length; i++)
+        mapped.push(transform(array[i]));
+    return mapped;
+}
+
+var overNinety = ancestry.filter(function(person) {
+    return person.died - person.born > 90;
+});
+console.log(map(overNinety, function(person) {
+    return person.name;
+}));
+// → ["Clara Aernoudts", "Emile Haverbeke",
+//    "Maria Haverbeke"]
 
 
 
