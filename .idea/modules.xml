@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/0003-Program-Structure/0003-Program-Structure.iml" filepath="$PROJECT_DIR$/0003-Program-Structure/0003-Program-Structure.iml" />
       <module fileurl="file://$PROJECT_DIR$/0004-Function/0004-Function.iml" filepath="$PROJECT_DIR$/0004-Function/0004-Function.iml" />
+      <module fileurl="file://$PROJECT_DIR$/0005-Data-Structures/0005-Data-Structures.iml" filepath="$PROJECT_DIR$/0005-Data-Structures/0005-Data-Structures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/0006-Higher-order-Functions/0006-Higher-order-Functions.iml" filepath="$PROJECT_DIR$/0006-Higher-order-Functions/0006-Higher-order-Functions.iml" />
     </modules>
   </component>
 </project>
