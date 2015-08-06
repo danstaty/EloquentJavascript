@@ -2,7 +2,7 @@
  * Created by davey on 26.03.2015.
  */
 
-
+//
 // Добавляем данные в журнал
 
 var Journal = [];
