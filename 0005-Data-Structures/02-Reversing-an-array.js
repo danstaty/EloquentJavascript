@@ -27,3 +27,59 @@ var arrayValue = [1, 2, 3, 4, 5];
 reverseArrayInPlace(arrayValue);
 console.log(arrayValue);
 // → [5, 4, 3, 2, 1]
+
+
+//try to task
+function reverseArray(someArray){
+    var newArray = []
+    for(var i = someArray.length - 1; i >= 0; i--){
+        newArray.push(someArray[i])
+    }
+    return newArray
+}
+
+console.log(reverseArray(["A", "B", "C"]));
+// → ["C", "B", "A"];
+
+
+function reverseArrayInPlace(someArray){
+    for(var i = 0; i < Math.floor(someArray.length/2); i++){
+        var old = someArray[i]
+        someArray[i] = someArray[someArray.length - 1 -i]
+        someArray[someArray.length - 1 -i] = old
+    }
+        return someArray
+}
+
+var arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
