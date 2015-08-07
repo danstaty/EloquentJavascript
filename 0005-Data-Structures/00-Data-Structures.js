@@ -73,6 +73,72 @@ console.log(correlations.pizza);
 
 
 
+//Добавляем данные в журнал
+var JOURNAL = []
+
+function addEntry(event, didTurnIntoToSquirrel){
+    JOURNAL.push({
+        events: event,
+        squirriel: didTurnIntoToSquirrel
+    })
+}
+
+
+//Вычисляем корреляцию
+function phi(table){
+    return (table[0])
+}
+
+
+//Находим событие
+
+function hasEvent(event, entry){
+    return entry.events.indexOf(event) !=-1;
+}
+
+function tableFor(event, journal){
+    var table = [0, 0, 0, 0]
+    for(var i = 0; i < journal.length; i++){
+        var entry = journal[i], index = 0;
+        if(hasEvent(event, entry)) index +=1:
+        if(entry.squirrel) index +=2;
+        table[index] += 1;
+    }
+    return table;
+}
+
+//Итоговая корреляция
+
+function gatherCorrelations(journal){
+    var phis = {}
+    for(var entry = 0; entry < journal.length; entry++){
+        var events = journal[entry].events
+            for(var i = 0; i < events.length; i++){
+                if(!(events in phis))
+                    phis[events] = phi(tableFor(event, journal))
+            }
+    }
+    return phis
+}
+
+var correlations = gatherCorrelations(JOURNAL)
+)
+console.log(correlations.pizza)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
