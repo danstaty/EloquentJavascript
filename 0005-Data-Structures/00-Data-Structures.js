@@ -72,65 +72,24 @@ console.log(correlations.pizza);
 // → 0.068599434
 
 
+//Находим искомую причину
+for(var i = 0; i < JOURNAL; i++){
+    var entry = JOURNAL[i]
+    if(hasEvent("арахис", entry) &&
+    !hasEvent("чистка зубов", entry))
+    entry.events.push("арахис зубы")
+}
+    console.log(phi(tableFor("арахис зубы", JOURNAL)))
 
-//Добавляем данные в журнал
-var JOURNAL = []
 
-function addEntry(event, didTurnIntoToSquirrel){
-    JOURNAL.push({
-        events: event,
-        squirriel: didTurnIntoToSquirrel
-    })
+//slice and concat
+
+function remove(array, index){
+    return array.slice(0, index).concat(array.slice(index+1));
 }
 
-
-//Вычисляем корреляцию
-function phi(table){
-    return (table[0])
-}
-
-
-//Находим событие
-
-function hasEvent(event, entry){
-    return entry.events.indexOf(event) !=-1;
-}
-
-function tableFor(event, journal){
-    var table = [0, 0, 0, 0]
-    for(var i = 0; i < journal.length; i++){
-        var entry = journal[i], index = 0;
-        if(hasEvent(event, entry)) index +=1:
-        if(entry.squirrel) index +=2;
-        table[index] += 1;
-    }
-    return table;
-}
-
-//Итоговая корреляция
-
-function gatherCorrelations(journal){
-    var phis = {}
-    for(var entry = 0; entry < journal.length; entry++){
-        var events = journal[entry].events
-            for(var i = 0; i < events.length; i++){
-                if(!(events in phis))
-                    phis[events] = phi(tableFor(event, journal))
-            }
-    }
-    return phis
-}
-
-var correlations = gatherCorrelations(JOURNAL)
-)
-console.log(correlations.pizza)
-
-
-
-
-
-
-
+console.log(remove(["a", "b", "c", "d", "e"], 2));
+// → ["a", "b", "d", "e"]
 
 
 

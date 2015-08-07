@@ -10,9 +10,6 @@ function range(start, fin) {
     return arrayMe;
 };
 
-
-
-
 function sum(array){
     var summer = 0;
     for(var i = 0; i < array.length; i++){
@@ -46,3 +43,32 @@ function range(start, end, step) {
 
 console.log(range(5, 2, -1));
 // → [5, 4, 3, 2]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
