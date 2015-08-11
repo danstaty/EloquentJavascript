@@ -49,7 +49,56 @@ console.log(range(5, 2, -1));
 
 
 
+//some test
 
+function range(start, end){
+    var someArray = []
+    for(var i = start; i <= end; i++) {
+        someArray.push(i)
+    }
+    return someArray
+}
+
+function sum(someArray){
+    var arraySum = 0
+    for(var t = 0; i < someArray.length; i++){
+        arraySum += someArray[i]
+    }
+    return arraySum
+
+}
+
+
+console.log(sum(range(1, 10)));
+// → 55
+
+function range(start, end, step){
+    var someArray = []
+    if(step === null)
+        step = 1
+    if(end > start)
+        for(var i = start; i <= end; i++) {
+            someArray.push(i)
+        }
+    else
+        for(var i = start; i >= end; i-- ){
+            someArray.push(i)
+        }
+
+    return someArray
+}
+
+function sum(someArray){
+    var arraySum = 0
+    for(var t = 0; i < someArray.length; i++){
+        arraySum += someArray[i]
+    }
+    return arraySum
+
+}
+
+console.log(range(5, 2, -1));
+// → [5, 4, 3, 2]
 
 
 
