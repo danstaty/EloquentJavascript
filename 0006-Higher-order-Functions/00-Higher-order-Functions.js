@@ -97,6 +97,118 @@ console.log(filter(ancestry, function(person){
 
 //Преобразование при помощи map
 
+    function map(array, transform){
+        var mapped = []
+        for(var i = 0; i < array.length; i++)
+            if(!transform(array[i])
+                return mapped.push(array[i])
+        return mapped
+           }
+
+var overNinety = ancestry.filter(function(person){
+        return person.died - person.born > 90
+})
+
+console.log(map(overNinety, function(person){
+        return person.name
+}))
+
+// → ["Clara Aernoudts", "Emile Haverbeke",
+//    "Maria Haverbeke"]
+
+//используем стандартный метод map
+
+var overNinety = ancestry.filter(function(person){
+        return person.died - person.born > 90
+})
+
+console.log(overNinety.map(function(person){
+        return person.name
+}))
+
+// → ["Clara Aernoudts", "Emile Haverbeke",
+//    "Maria Haverbeke"]
+
+
+//суммирование с reduce
+
+function reduce (array, combine, start){
+    var current = start;
+    for(var i = 0; i < array.length; i++)
+        current = combine(current, array[i])
+    return current
+}
+
+console.log(reduce([1, 2, 3, 4], function(a, b){
+    return a + b,
+        0
+}))
+// → 10
+
+//стандартый метод reduce
+
+console.log(ancestry.reduce(function(cur, min){
+    if(cur.born < min.born)
+        return cur
+    else
+        return min
+
+}))
+
+// → {name: "Pauwels van Haverbeke", born: 1535, …}
+
+
+//определение среднего возраста мужчин и женщин
+
+function average(array){
+    function plus(a, b){return a + b}
+    return array.reduce(plus) / array.length
+}
+
+function age(p){return p.died - p.born}
+function male(p){return p.sex == "m"}
+function female(p){return p.sex == "f"}
+
+console.log(average(ancestry.filter(male).map(age)));
+// → 61.67
+console.log(average(ancestry.filter(female).map(age)));
+// → 54.56
+
+
+//Строим объект сопостовляющий имена и людей
+var byName = []
+ancestry.forEach(function(person){
+    byName[person.name] = person
+ })
+
+console.log(byName["Philibert Haverbeke"]);
+// → {name: "Philibert Haverbeke", …}
+
+
+//Подсчет ДНК
+
+function reduceAncestors(person, f, defaultValue) {
+    function valueFor(person) {
+        if (person == null)
+            return defaultValue;
+        else
+            return f(person, valueFor(byName[person.mother]),
+                valueFor(byName[person.father]));
+    }
+    return valueFor(person);
+}
+
+function sharedDNA(person, fromMother, fromFather) {
+    if (person.name == "Pauwels van Haverbeke")
+        return 1;
+    else
+        return (fromMother + fromFather) / 2;
+}
+var ph = byName["Philibert Haverbeke"];
+console.log(reduceAncestors(ph, sharedDNA, 0) / 4);
+// → 0.00049
+
+
 
 
 
