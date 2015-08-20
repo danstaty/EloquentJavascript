@@ -36,6 +36,7 @@ var protoRabbit = {
     }
 };
 var killerRabbit = Object.create(protoRabbit);
+
 killerRabbit.type = "убийственный";
 killerRabbit.speak("ХРЯЯЯСЬ!");
 // → А убийственный кролик говорит ' ХРЯЯЯСЬ!'
@@ -59,14 +60,22 @@ blackRabbit.speak("Всем капец...");
 // → А чёрный кролик говорит ' Всем капец...'
 
 
+//Если нашим кролика потребуется танец
+
+Rabbit.prototype.dance = function() {
+    console.log("А " + this.type + " кролик танцует джигу.");
+};
+killerRabbit.dance();
+// → А убийственный кролик танцует джигу.
 
 
-
-
-
-
-
-
+//Если нам нужен свежий объект без прототипа, мы в Object.create(null) передаем параметр null
+var map = Object.create(null);
+map["пицца"] = 0.069;
+console.log("toString" in map);
+// → false
+console.log("пицца" in map);
+// → true
 
 
 
