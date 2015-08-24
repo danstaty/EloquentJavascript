@@ -73,7 +73,7 @@ TextCell.prototype.draw = function(width, height) {
 
 //Опыт с шахматной доской
 
-var rows = [];
+/* var rows = [];
 for (var i = 0; i < 5; i++) {
     var row = [];
     for (var j = 0; j < 5; j++) {
@@ -84,7 +84,8 @@ for (var i = 0; i < 5; i++) {
     }
     rows.push(row);
 }
-console.log(drawTable(rows));
+console.log(drawTable(rows)); */
+
 // → ##    ##    ##
 //      ##    ##
 //   ##    ##    ##
@@ -111,7 +112,8 @@ UnderlinedCell.prototype.draw = function(width, height) {
 //Главная функция стоящая сетку ячеек
 
 function dataTable(data) {
-    var keys = Object.keys(data[0]);
+    var keys = Object.keys(data[0]); /*стандартная функция Object.keys возвращает массив имен свойств объекта. Работает
+    по образцу for...in В нашем случае он вернет массив типа ["name", "height", "country"...]*/
     var headers = keys.map(function(name) {
         return new UnderlinedCell(new TextCell(name));
     });
@@ -120,7 +122,8 @@ function dataTable(data) {
             return new TextCell(String(row[name]));
         });
     });
-    return [headers].concat(body);
+    return [headers].concat(body); /* headers в [] потому что мы говорим, что хотим объединить массивы headers и body
+    в новый массив headers */
 }
 
 var MOUNTAINS = [
@@ -141,9 +144,6 @@ console.log(drawTable(dataTable(MOUNTAINS)));
 //   ------------ ------ -------------
 //   Kilimanjaro  5895   Tanzania
 //   … и так далее
-
-
-
 
 
 
