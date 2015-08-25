@@ -3,16 +3,17 @@
 
 function rowHeights(rows) {
     return rows.map(function(row) {
-        return row.reduce(function(max, cell) {
-            return Math.max(max, cell.minHeight());
-        }, 0);
+        return row.reduce(function(max, cell) { /*reduce функция сворачивания, проходится поочердно по каждому элементу
+            массива*/
+            return Math.max(max, cell.minHeight()); //возвращаем наибольшее из двух сравниваемых значений
+        }, 0); // в самой первой итарации начальное значение 0
     });
 }
 
 function colWidths(rows) {
     return rows[0].map(function(_, i) {
         return rows.reduce(function(max, row) {
-            return Math.max(max, row[i].minWidth());
+            return Math.max(max, row[i].minWidth()); //вызов свойству minWidth
         }, 0);
     });
 }

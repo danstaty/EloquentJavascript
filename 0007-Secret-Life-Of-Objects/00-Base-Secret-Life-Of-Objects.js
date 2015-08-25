@@ -8,11 +8,12 @@ rabbit.speak = function(line){
 rabbit.speak("Я живой")
 // → Кролик говорит 'Я живой.'
 
-function speak(line){
-    console.log("A" + this.type + "кролик говорит" + line)
+function speak(line){ //метод мы можем описать отдельно, а затем присвоить его свойству
+    console.log("A" + this.type + "кролик говорит" + line) /*словечко this ссылается на тот объект в контексте которого
+    будет вызван данный метод*/
 }
 
-var whiteRabbit = {type: "белый", speak: speak}
+var whiteRabbit = {type: "белый", speak: speak} //свойству speak присваиваем метод speak
 var fatRabbit = {type: "толстый", speak: speak}
 
 whiteRabbit.speak("Ушки мои и усики, " +  "я же наверняка опаздываю!");
@@ -23,12 +24,24 @@ fatRabbit.speak("Мне бы сейчас морковочки.");
 
 //Call and Apply
 
-speak.apply(fatRabbit, ["Отрыжка"])
+speak.apply(fatRabbit, ["Отрыжка!"]); // apple вызывает функцию методом которой является, принимает в качестве второго
+// аргумента массив
 // → А толстый кролик говорит ' Отрыжка!'
-speak.call({type: "старый"}, "О, Господи")
+speak.call({type: "старый"}, " О, господи."); /*call вызывает функцию методом которой является, а аргументы принимает
+как обычно, не в виде массивов*/
 // → А старый кролик говорит 'О, господи.'
 
+
 //Прототипирование
+
+var empty = {};
+console.log(empty.toString);
+// → function toString(){…}
+console.log(empty.toString());
+// → [object Object]
+
+
+
 
 var protoRabbit = {
     speak: function(line) {
@@ -76,6 +89,38 @@ console.log("toString" in map);
 // → false
 console.log("пицца" in map);
 // → true
+
+
+
+var rabbit = {}
+
+rabbit.speak = function(line){
+    console.log("Я живой" + line)
+}
+
+rabbit.speak("Я живой.");
+// → Кролик говорит 'Я живой.'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
