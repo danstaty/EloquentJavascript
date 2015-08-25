@@ -43,26 +43,33 @@ console.log(empty.toString());
 
 
 
+
+
 var protoRabbit = {
-    speak: function(line) {
-        console.log("А " + this.type + " кролик говорит '" +  line + "'");
+    speak : function(line){
+        console.log(А + this.type + кролик + line + Хрясь)
     }
-};
-var killerRabbit = Object.create(protoRabbit);
+}
+
+var killerRabbit = Object.create(protoRabbit)
 
 killerRabbit.type = "убийственный";
 killerRabbit.speak("ХРЯЯЯСЬ!");
 // → А убийственный кролик говорит ' ХРЯЯЯСЬ!'
 
+
+
 //Конструкторы
-function Rabbit(type){
-    this.type = type
+function Rabbit(type) {
+    this.type = type;
 }
 
-var blackRabbit = new Rabbit("черный")
-
+var killerRabbit = new Rabbit("убийственный");
+var blackRabbit = new Rabbit("чёрный");
 console.log(blackRabbit.type);
 // → чёрный
+
+
 
 Rabbit.prototype.speak = function(line) { /* запись типа rabbit.prototype.speak говорит, что, я хочу чтобы при создани
 экземпляра Rabbit ему передавалась эта функция*/
@@ -71,6 +78,21 @@ Rabbit.prototype.speak = function(line) { /* запись типа rabbit.protot
 
 blackRabbit.speak("Всем капец...");
 // → А чёрный кролик говорит ' Всем капец...'
+
+
+//Перезагрузка унаследованных свойств
+Rabbit.prototype.teeth = "мелкие"
+console.log(killerRabbit.teeth);
+// → мелкие
+killerRabbit.teeth = "длинные, острые и окровавленные ";
+console.log(killerRabbit.teeth);
+// → длинные, острые и окровавленные
+console.log(blackRabbit.teeth);
+// → мелкие
+console.log(Rabbit.prototype.teeth);
+// → мелкие
+
+
 
 
 //Если нашим кролика потребуется танец
@@ -100,8 +122,6 @@ rabbit.speak = function(line){
 
 rabbit.speak("Я живой.");
 // → Кролик говорит 'Я живой.'
-
-
 
 
 
