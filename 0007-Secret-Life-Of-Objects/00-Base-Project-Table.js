@@ -1,21 +1,21 @@
 /*Первая часть программы вычисляет массивы минимальных ширин колонок и высот строк для матрицы ячеек.
     Переменная rows будет содержать массив массивов, где каждый внутренний массив – это строка ячеек.*/
 
-function rowHeights(rows) {
-    return rows.map(function(row) {
-        return row.reduce(function(max, cell) { /*reduce функция сворачивания, проходится поочердно по каждому элементу
-            массива*/
-            return Math.max(max, cell.minHeight()); //возвращаем наибольшее из двух сравниваемых значений
-        }, 0); // в самой первой итарации начальное значение 0
-    });
-}
+function rowHeights(rows) { //функция определяет высоту строк
+        return rows.map(function(row) {
+            return row.reduce(function(max, cell) { /*reduce функция сворачивания, проходится поочердно по каждому элементу
+             массива*/
+                return Math.max(max, cell.minHeight()); //возвращаем наибольшее из двух сравниваемых значений
+            }, 0); // в самой первой итарации начальное значение 0
+        });
+    }
 
-function colWidths(rows) {
-    return rows[0].map(function(_, i) {
-        return rows.reduce(function(max, row) {
-            return Math.max(max, row[i].minWidth()); //вызов свойству minWidth
-        }, 0);
-    });
+    function colWidths(rows) { //функция определяет ширину колонок
+        return rows[0].map(function(_, i) { // _ означает что этот аргумент не будет использоваться
+            return rows.reduce(function(max, row) {
+                return Math.max(max, row[i].minWidth()); //вызов свойству minWidth
+            }, 0);
+        });
 }
 
 
@@ -35,26 +35,44 @@ function drawTable(rows) {
             return cell.draw(widths[colNum], heights[rowNum]);
         });
         return blocks[0].map(function(_, lineNo) {
-            return drawLine(blocks, lineNo);
+            return drawLine(blocks, lineNo); //создает промежуток в один пробел между столбцами таблицы
         }).join("\n");
     }
 
     return rows.map(drawRow).join("\n");
+    /*
+    Простой пример, чтобы понять "return rows.map(drawRow).join("\n")"
+
+    var arr = ['a', 'b', 'c'];
+
+     function printArray(value, index) {
+     console.log(index + ' ' + value);
+     }
+
+     arr.map(printArray);
+     // prints
+     // 0 a
+     // 1 b
+     // 2 c
+     */
 }
 
 //Конструктор для ячеек
 
-function repeat(string, times) {
+function repeat(string, times) { /*Используется вспомогательная функция repeat, которая строит строчку с заданным
+значением, повторённым заданное количество раз. Метод draw использует её для создания отступов в строках, чтобы они
+все были необходимой длины.*/
     var result = "";
     for (var i = 0; i < times; i++)
         result += string;
     return result;
 }
 
-function TextCell(text) {
-    this.text = text.split("\n");
+function TextCell(text) { //конструктор для ячеек содержащих текст - представляет собой интерфейс для ячеек
+    this.text = text.split("\n"); //разбивает строчку в массив строк при помощи метода split, который режет строчку
+//    каждый раз, когда встречает свой аргумент
 }
-TextCell.prototype.minWidth = function() {
+TextCell.prototype.minWidth = function() { //находит максимальную ширину линии в массиве
     return this.text.reduce(function(width, line) {
         return Math.max(width, line.length);
     }, 0);
