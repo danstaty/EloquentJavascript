@@ -11,17 +11,19 @@ function rowHeights(rows) { //функция определяет высоту �
         });
     }
 
+
 function colWidths(rows) { //функция определяет ширину колонок
-        return rows[0].map(function(_, i) { // _ означает что этот аргумент не будет использоваться
-            return rows.reduce(function(max, row) {
-                return Math.max(max, row[i].minWidth()); //вызов свойству minWidth
-            }, 0);
-        });
+    return rows[0].map(function(_, i) { // _ означает что этот аргумент не будет использоваться
+        return rows.reduce(function(max, row) {
+            return Math.max(max, row[i].minWidth()); //вызов свойству minWidth
+        }, 0);
+    });
 }
 
 
 //Код для вывода таблицы
-function drawTable(rows) {
+
+function drawTable(rows) { /*rows полученный массив массивов где самый первый элемент это верхняя строка headers*/
     var heights = rowHeights(rows);
     var widths = colWidths(rows);
 
@@ -42,9 +44,9 @@ function drawTable(rows) {
 
     return rows.map(drawRow).join("\n");
     /*
-    Простой пример, чтобы понять "return rows.map(drawRow).join("\n")"
+     Простой пример, чтобы понять "return rows.map(drawRow).join("\n")"
 
-    var arr = ['a', 'b', 'c'];
+     var arr = ['a', 'b', 'c'];
 
      function printArray(value, index) {
      console.log(index + ' ' + value);
@@ -61,8 +63,8 @@ function drawTable(rows) {
 //Конструктор для ячеек
 
 function repeat(string, times) { /*Используется вспомогательная функция repeat, которая строит строчку с заданным
-значением, повторённым заданное количество раз. Метод draw использует её для создания отступов в строках, чтобы они
-все были необходимой длины.*/
+ значением, повторённым заданное количество раз. Метод draw использует её для создания отступов в строках, чтобы они
+ все были необходимой длины.*/
     var result = "";
     for (var i = 0; i < times; i++)
         result += string;
@@ -94,17 +96,17 @@ TextCell.prototype.draw = function(width, height) {
 //Опыт с шахматной доской
 
 /* var rows = [];
-for (var i = 0; i < 5; i++) {
-    var row = [];
-    for (var j = 0; j < 5; j++) {
-        if ((j + i) % 2 == 0)
-            row.push(new TextCell("##"));
-        else
-            row.push(new TextCell("  "));
-    }
-    rows.push(row);
-}
-console.log(drawTable(rows)); */
+ for (var i = 0; i < 5; i++) {
+ var row = [];
+ for (var j = 0; j < 5; j++) {
+ if ((j + i) % 2 == 0)
+ row.push(new TextCell("##"));
+ else
+ row.push(new TextCell("  "));
+ }
+ rows.push(row);
+ }
+ console.log(drawTable(rows)); */
 
 // → ##    ##    ##
 //      ##    ##
@@ -131,20 +133,24 @@ UnderlinedCell.prototype.draw = function(width, height) {
 
 //Главная функция стоящая сетку ячеек
 
-function dataTable(data) {
+function dataTable(data) { //Получаем массв объектов data = [Object, Object, Object, Object, Object, Object, Object]
     var keys = Object.keys(data[0]); /*стандартная функция Object.keys возвращает массив имен свойств объекта. Работает
-    по образцу for...in В нашем случае он вернет массив типа [name, height, country]. data[0] - означает, что мы ра-
-    ботаем только с первым объектом в массиве. Иначе, результат был бы [0,1,2,3,4,5,6]*/
-    var headers = keys.map(function(name) {
-        return new UnderlinedCell(new TextCell(name));
+     по образцу for...in В нашем случае он вернет массив типа [name, height, country]. data[0] - означает, что мы ра-
+     ботаем только с первым объектом в массиве keys = ["name", "height", "country"]. Иначе, результат был бы
+     [0,1,2,3,4,5,6]*/
+    var headers = keys.map(function(name) { /* map создает новый массив, основанный на применении внутренней функции
+        ко всем элемента первоначального массива, headers = [UnderlinedCell, UnderlinedCell, UnderlinedCell]*/
+        return new UnderlinedCell(new TextCell(name)); //работает поочередно с каждым элементом массива keys
     });
-    var body = data.map(function(row) {
-        return keys.map(function(name) {
-            return new TextCell(String(row[name]));
+    var body = data.map(function(row) { /* row в каждом случает это один из объектов массива data, например
+    {name: "Kilimanjaro", height: 5895, country: "Tanzania"} */
+        return keys.map(function(name) { /*для выборки keys = ["name", "height", "country"], для каждого из ее элементов
+         находим все соответсвия в массиве data*/
+            return new TextCell(String(row[name])); /*преобразуем в строковый элемент каждую отробатываемую позицию*/
         });
     });
     return [headers].concat(body); /* headers в [] потому что мы говорим, что хотим объединить массивы headers и body
-    в новый массив headers */
+     в новый массив headers */
 }
 
 var MOUNTAINS = [
@@ -165,8 +171,6 @@ console.log(drawTable(dataTable(MOUNTAINS)));
 //   ------------ ------ -------------
 //   Kilimanjaro  5895   Tanzania
 //   … и так далее
-
-
 
 
 
